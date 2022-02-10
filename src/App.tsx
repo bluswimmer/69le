@@ -1,6 +1,7 @@
 import {
   InformationCircleIcon,
   ChartBarIcon,
+  HomeIcon,
   SunIcon,
   MoonIcon,
   CakeIcon,
@@ -224,6 +225,10 @@ function App() {
             onClick={() => handleHardMode(!isHardMode)}
           />
         )*/}
+        <HomeIcon
+          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+          onClick={() => window.open('https://www.bluswimmer.com', '_blank')}
+        />
         {isDarkMode ? (
           <SunIcon
             className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
