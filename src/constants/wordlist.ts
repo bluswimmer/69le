@@ -1,4 +1,4 @@
-/**
+/*
 Nice try, bozo.
 Unlike the original Wordle, all of the answers are out of order.
 */
