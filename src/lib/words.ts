@@ -111,7 +111,7 @@ export const getWordOfDay = () => {
 
   return {
     solution: EQUATIONS[Math.floor(r.next() * EQUATIONS.length)],
-    solutionIndex: index,
+    solutionIndex: index+1,
     tomorrow: nextday,
   }
 }
