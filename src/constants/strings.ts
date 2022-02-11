@@ -6,12 +6,12 @@ export const ABOUT_GAME_MESSAGE = 'About this game'
 export const NOT_ENOUGH_LETTERS_MESSAGE = 'Not enough characters'
 export const WORD_NOT_FOUND_MESSAGE = 'Does not compute to 69'
 export const CORRECT_WORD_MESSAGE = (solution: string) =>
-  `The equation was ${solution}`
+  `The expression was ${solution}`
 export const ENTER_TEXT = 'Enter'
 export const DELETE_TEXT = 'Delete'
 export const STATISTICS_TITLE = 'Statistics'
 export const GUESS_DISTRIBUTION_TEXT = 'Guess Distribution'
-export const NEW_WORD_TEXT = 'New equation in'
+export const NEW_WORD_TEXT = 'New expression in'
 export const SHARE_TEXT = 'Share'
 export const TOTAL_TRIES_TEXT = 'Total tries'
 export const SUCCESS_RATE_TEXT = 'Success rate'

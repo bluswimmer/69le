@@ -10,8 +10,8 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Guess the equation equal to 69 in 6 tries. After each guess, the color of the tiles will
-        change to show how close your guess was to the equation.
+        Guess the expression equal to 69 in 6 tries. After each guess, the color of the tiles will
+        change to show how close your guess was to the expression.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
@@ -23,7 +23,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
 		<Cell value="6" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The digit 9 is in the equation and in the correct spot.
+        The digit 9 is in the expression and in the correct spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
@@ -35,7 +35,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
 		<Cell value="3" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The operator * is in the equation but in the wrong spot.
+        The operator * is in the expression but in the wrong spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
@@ -47,7 +47,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
 		<Cell value="6" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The digit 5 is not in the equation in any spot.
+        The digit 5 is not in the expression in any spot.
       </p>
     </BaseModal>
   )
