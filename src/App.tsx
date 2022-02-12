@@ -2,10 +2,7 @@ import {
   InformationCircleIcon,
   ChartBarIcon,
   HomeIcon,
-  SunIcon,
-  MoonIcon,
-  CakeIcon,
-  AcademicCapIcon,
+  CogIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
@@ -14,6 +11,7 @@ import { Keyboard } from './components/keyboard/Keyboard'
 import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
+import { SettingsModal } from './components/modals/SettingsModal'
 import {
   GAME_TITLE,
   WIN_MESSAGES,
@@ -51,6 +49,7 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
@@ -62,6 +61,11 @@ function App() {
       ? localStorage.getItem('theme') === 'dark'
       : prefersDarkMode
       ? true
+      : false
+  )
+  const [isHighContrastMode, setIsHighConstrastMode] = useState(
+    localStorage.getItem('contrast')
+      ? localStorage.getItem('contrast') === 'high'
       : false
   )
   const [successAlert, setSuccessAlert] = useState('')
@@ -99,6 +103,11 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark')
     }
+    if (isHighContrastMode) {
+      document.documentElement.classList.add('high-contrast')
+    } else {
+      document.documentElement.classList.remove('high-contrast')
+    }
   }, [isDarkMode])
 
   const handleDarkMode = (isDark: boolean) => {
@@ -109,6 +118,11 @@ function App() {
   const handleHardMode = (isHard: boolean) => {
     setIsHardMode(isHard)
     localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
+  }
+
+  const handleHighConstrastMode = (isHighContrast: boolean) => {
+    setIsHighConstrastMode(isHighContrast)
+    localStorage.setItem('contrast', isHighContrast ? 'high' : 'low')
   }
 
   useEffect(() => {
@@ -229,17 +243,6 @@ function App() {
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => window.open('https://www.bluswimmer.com', '_blank')}
         />
-        {isDarkMode ? (
-          <SunIcon
-            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
-            onClick={() => handleDarkMode(!isDarkMode)}
-          />
-        ) : (
-          <MoonIcon
-            className="h-6 w-6 mr-2 cursor-pointer"
-            onClick={() => handleDarkMode(!isDarkMode)}
-          />
-        )}
         <InformationCircleIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
@@ -247,6 +250,20 @@ function App() {
         <ChartBarIcon
           className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
+        />
+        <CogIcon
+          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+          onClick={() => setIsSettingsModalOpen(true)}
+        />
+        <SettingsModal
+          isOpen={isSettingsModalOpen}
+          handleClose={() => setIsSettingsModalOpen(false)}
+          isHardMode={isHardMode}
+          handleHardMode={handleHardMode}
+          isDarkMode={isDarkMode}
+          handleDarkMode={handleDarkMode}
+          isHighContrastMode={isHighContrastMode}
+          handleHighConstrastMode={handleHighConstrastMode}
         />
       </div>
       <Grid
@@ -282,7 +299,6 @@ function App() {
         isOpen={isAboutModalOpen}
         handleClose={() => setIsAboutModalOpen(false)}
       />
-
       <button
         type="button"
         className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
